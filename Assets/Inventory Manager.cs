@@ -18,7 +18,7 @@ public class InventoryManager : MonoBehaviour
         inventory.Add(new InventoryItem("Gold"));
         inventory.Add(new InventoryItem("Diamond"));
 
-        Debug.Log(LinearSearchByName(inventory, "Fucker"));
+        Debug.Log(LinearSearchByName(inventory, "Mace"));
 
         /*for (int i = 0; i < inventory.Count; i++) {
             Debug.Log($"Name: {inventory[i].name}, ID: {inventory[i].id}, Value: {inventory[i].value}");
@@ -26,6 +26,7 @@ public class InventoryManager : MonoBehaviour
         //test to see values being implemented
     }
 
+    //task 1
     static string LinearSearchByName(List<InventoryItem> list, string itemName)
     {
         for (int i = 0; i < list.Count; i++)
