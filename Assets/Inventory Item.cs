@@ -23,8 +23,8 @@ public class InventoryItem
 
     public InventoryItem(string Name) {
         _name = Name;
-        _id = Random.Range(1, 100);
-        _value = _value + 1;
+        _id = Random.Range(1, 10000);
+        _value = Random.Range(1, 100);
     }
     
 }
