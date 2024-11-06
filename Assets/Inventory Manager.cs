@@ -19,6 +19,7 @@ public class InventoryManager : MonoBehaviour
         inventory.Add(new InventoryItem("Diamond"));
 
         Debug.Log(LinearSearchByName(inventory, "Mace"));
+        //Debug.Log(BinarySearchByID(inventory, inventory[3].id)); //<- bubble search method
 
         /*for (int i = 0; i < inventory.Count; i++) {
             Debug.Log($"Name: {inventory[i].name}, ID: {inventory[i].id}, Value: {inventory[i].value}");
@@ -38,6 +39,53 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
+
+    //task 2
+    /* Bubble sort method, throwing "not all code paths return a value" error in binary search method
+    static int BinarySearchByID(List<InventoryItem> list, int target)
+    {
+        sortList(list);
+        int left = 0;
+        int right = list[list.Count - 1].id;
+
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+
+            if (mid == target)
+            {
+                return mid; // Return the index if the target is found
+            }
+            else if (mid < target)
+            {
+                left = mid + 1; // Narrow the search to the upper half
+            }
+            else
+            {
+                right = mid - 1; // Narrow the search to the lower half
+            }
+        }
+    }
+    static void sortList(List<InventoryItem> list)
+    {
+        int length = list.Count;
+
+        for (int element = 0; element < length - 1; element++)
+        {
+            for (int neighbor = 0; neighbor < length - element - 1; neighbor++)
+            {
+
+                if (list[neighbor].id > list[neighbor + 1].id)
+                {
+                int temporary = list[neighbor].id;
+                list[neighbor] = list[neighbor + 1];
+                list[neighbor + 1].id = temporary;
+                }
+            }
+        }
+    }
+    */
+
 
 
 
