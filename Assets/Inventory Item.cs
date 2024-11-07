@@ -21,10 +21,15 @@ public class InventoryItem
         set {_value = value;}
     }
 
-    public InventoryItem(string Name) {
+    public InventoryItem(string Name, int ID, int Value) {
         _name = Name;
-        _id = Random.Range(1, 10000);
-        _value = Random.Range(1, 100);
+        _id = ID;
+        _value = Value;
+    }
+
+    public override string ToString()
+    {
+        return "Name: " + name + ", ID: " + id.ToString() + ", Value: $" + value.ToString() + ".00";
     }
     
 }
