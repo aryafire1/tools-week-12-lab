@@ -19,26 +19,26 @@ public class InventoryManager : MonoBehaviour
         inventory.Add(new InventoryItem("Iron", 7, 13));
 
         // Task 1: Linear Search
-        Debug.Log("LINEAR SEARCH: ");
+        Debug.Log("LINEAR SEARCH FOR MACE: ");
         Debug.Log(LinearSearchByName(inventory, "Mace"));
 
-        //Debug.Log(BinarySearchByID(inventory, inventory[3].id)); //<- bubble search method
+        // Task 2: Binary Search
+        Debug.Log("BINARY SEARCH FOR ID 4: ");
 
-        /*for (int i = 0; i < inventory.Count; i++) {
-            Debug.Log($"Name: {inventory[i].name}, ID: {inventory[i].id}, Value: {inventory[i].value}");
-        }*/
-        //test to see values being implemented
+        inventory.Sort((item1, item2) => item1.id.CompareTo(item2.id));
 
-        // Task 2: Quick Sort
+        Debug.Log(inventory[BinarySearchByID(inventory, 4)]);
+
+        // Task 3: Quick Sort
         QuickSortByValue(inventory, 0, inventory.Count - 1);
 
-        Debug.Log("QUICK SORT: ");
+        Debug.Log("QUICK SORT BY VALUE: ");
         for (int i = 0; i < inventory.Count; i++) {
             Debug.Log(inventory[i]);
         }
     }
 
-    //task 1
+    // task 1
     static InventoryItem LinearSearchByName(List<InventoryItem> list, string itemName)
     {
         for (int i = 0; i < list.Count; i++)
@@ -51,55 +51,34 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    //task 2
-    /* Bubble sort method, throwing "not all code paths return a value" error in binary search method
-    static int BinarySearchByID(List<InventoryItem> list, int target)
+    // task 2
+    int BinarySearchByID(List<InventoryItem> inventory, int target)
     {
-        sortList(list);
         int left = 0;
-        int right = list[list.Count - 1].id;
+        int right = inventory.Count - 1;
 
-        while (left <= right)
+        while(left <= right)
         {
             int mid = left + (right - left) / 2;
 
-            if (mid == target)
+            if(inventory[mid].id == target)
             {
-                return mid; // Return the index if the target is found
+                return mid;
             }
-            else if (mid < target)
+            else if(inventory[mid].id < target)
             {
-                left = mid + 1; // Narrow the search to the upper half
+                left = mid + 1;
             }
             else
             {
-                right = mid - 1; // Narrow the search to the lower half
+                right = mid - 1;
             }
         }
-    }
-    static void sortList(List<InventoryItem> list)
-    {
-        int length = list.Count;
 
-        for (int element = 0; element < length - 1; element++)
-        {
-            for (int neighbor = 0; neighbor < length - element - 1; neighbor++)
-            {
-
-                if (list[neighbor].id > list[neighbor + 1].id)
-                {
-                int temporary = list[neighbor].id;
-                list[neighbor] = list[neighbor + 1];
-                list[neighbor + 1].id = temporary;
-                }
-            }
-        }
+        return -1;
     }
-    */
 
     // task 3
-    #region Quick Sort
-
     int PartitionByValue(List<InventoryItem> inventory, int first, int last)
     {
         int pivot = inventory[last].value;
@@ -134,5 +113,4 @@ public class InventoryManager : MonoBehaviour
             QuickSortByValue(inventory, pivot + 1, last);
         }
     }
-    #endregion
 }
